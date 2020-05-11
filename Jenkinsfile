@@ -10,5 +10,11 @@ pipeline {
                '''
       }
     }
+    stage('Lint HTML') {
+      steps {
+          sh 'echo "Check the html using tidy"'
+          sh 'tidy -q -e *.html'
+      }
+    }
   }
 }
