@@ -22,5 +22,6 @@ pipeline {
           s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'cicd-bucket-vaisa')
         }
       }
+    }
   }
 }
