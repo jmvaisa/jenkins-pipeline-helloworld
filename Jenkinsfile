@@ -12,9 +12,15 @@ pipeline {
     }
     stage('Lint HTML') {
       steps {
-          sh 'echo "Check the html using tidy"'
-          sh 'tidy -q -e *.html'
+        sh 'echo "Check the html using tidy"'
+        sh 'tidy -q -e *.html'
       }
     }
+    stage('Upload to AWS') {
+      steps {
+        withAWS(region:'us-west-2',credentials:'Udacity') {
+          s3Upload(pathStyleAccessEnabled:true, payloadSigningEnabled: true, file:'index.html', bucket:'cicd-bucket-vaisa')
+        }
+      }
   }
 }
